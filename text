@@ -1,0 +1,46 @@
+<br/>
+            <div className="container input-group flex-nowrap">
+                <input onChange={Filter} type="text" className="form-control" placeholder="Pretraži po imenu ili prezimenu" aria-label="Search" aria-describedby="addon-wrapping"/>
+            </div>
+            <div className="container">
+                <table className="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Redni broj</th>
+                            <th>Polazište</th>
+                            <th>Odredište</th>
+                            <th>Svrha</th>
+                            <th>Datum odlaska</th>
+                            <th>Broj dana</th>
+                            <th>Zaposlenici</th>
+                            <th>Odobreno</th>
+                            <th>Obriši</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {                            
+                            post.map((nalog) => {
+                                return (
+                                    <tr key={nalog.brojnal}>
+                                        <td>{nalog.brojnal}</td>
+                                        <td>{nalog.polaziste}</td>
+                                        <td>{nalog.odrediste}</td>
+                                        <td>{nalog.svrha}</td>
+                                        <td>{nalog.datum}</td>
+                                        <td>{nalog.bDana}</td>
+                                        <td>{nalog.zaposlenik.map((z) => {
+                                            return (
+                                                <>
+                                                    <td>{z.ime + " " + z.prezime}</td>                                                    
+                                                </>
+                                            )
+                                        })}</td>
+                                        <td>{(nalog.odobreno) ? "Da" : "Ne"}</td>
+                                        <td><button className="btn btn-outline-danger btn-sm" onClick={() => Delete(nalog.brojnal)}>Obriši</button></td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>
+            </div> 
